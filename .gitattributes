@@ -1,0 +1,7 @@
+*.LBR binary
+*.SAV binary
+*.SCR binary
+*.DOC binary
+*.EXE binary
+*.bas text eol=crlf
+*.bi text eol=crlf

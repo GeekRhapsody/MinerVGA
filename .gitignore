@@ -1,0 +1,4 @@
+re/out/
+dist/
+*.exe
+!MINERVGA.EXE

@@ -1,0 +1,286 @@
+
+
+
+
+
+
+
+
+
+                                      Miner VGA
+
+                            A sprite based game of mining
+
+                                    for VGA only.
+
+
+
+                                     Version 1.1 
+
+                                  September 10,1989
+
+
+
+                           Public Domain, FrodoSoft, Inc.
+
+                            written by Harrell W. Stiles
+
+
+
+
+
+
+
+
+
+                         ********** Introduction **********
+
+            Miner is a game of rare earths mining.  In the game, you
+            assume the role of a miner in search of rare earths like
+            silver, gold, and platinum.
+
+            The game was originally implemented on a Commodore Pet
+            computer in the late 70's as a text only style game.  The
+            current version encompasses more than the original version,
+            but much of the charm remains intact.  I wrote and released
+            another PC miner game (text only) several years back.  That
+            earlier version was primitive and bears little resemblance
+            to the current (hopefully better) one.  For this version I
+            started from scratch in a different language and used only
+            VGA screen modes.  My personal goal with this program was to
+            gain experience working with the graphics technology of the
+            VGA card.
+
+            I would be very interested in locating the original
+            programmer of the Commodore version if anyone has any clues.
+
+
+
+                     ********** MinerVGA Distribution **********
+
+            MinerVGA is distributed as public domain software.  You may
+            freely copy and distribute MinerVGA provided you receive no
+            compensation for doing so.  There are no fees, licenses, or
+            other BS.  Personally, I hate those companies that take PD
+            software and sell them to you with a charge on the diskette
+            that the software is contained on.  It defeats the purpose
+            of releasing the software as PD.
+
+            Anyway, the games consists of four files:
+
+                           MINERVGA.EXE  the game executable file
+                           MINERVGA.LBR  the sprite library
+                           MINERVGA.DOC  this document file
+                           MINERVGA.SAV  the save game file
+                           MINERVGA.SCR  the high score file
+
+            Source code may be available.  It depends on the demand.  I
+            will likely include source listings in future releases.  If
+            you are desperate for source code, leave a message to me on
+            the Walnut Creek Auntie BBS at (415) 937-0156 Harrell Stiles
+
+            MinerVGA was written in MS Quick Basic 4.0.
+
+
+
+                **********Graphics Modes and Compatibility **********
+
+            MinerVGA uses only graphics mode twelve (12).  The
+            resolution is 640x480 with 16 colors (text 80x30).  It is a
+            standard VGA video mode, and some EGA cards may support it
+            as well.  I don't know if MCGA supports this mode, but you
+            might try.  The code was written on and for VGA compatible
+            displays.  In my opinion there are too few recreational
+            programs for these machines when this should be one of their
+            strong suits.
+
+
+
+                    ********** The Object and Winning **********
+
+            The object of the game is to "make a lady" out of Miss Mimi,
+            the owner of the brothel.  If this sounds too sexist for
+            you, you might want to quit reading now and not play.
+
+            In essence, she has agreed to marry you IF you present her
+            with a diamond ring and $20,000 in cash (your mutual
+            retirement fund.)
+
+            "Anything less and I would be wasting my god given talents
+            on just one man.", says she.  Because of her history of
+            unsanitary sexual practices you may also want to consider
+            having a condom as well.
+
+            You win the game when you present yourself to Miss Mimi with
+            $20,000 and a diamond ring.  The toughest part, of course,
+            is mining enough ore to come up with the $20,000.
+
+
+
+
+                           ********** Key Help **********
+
+            You control your miner with the keyboard.  The arrow keys
+            move the miner in up to 4 directions (diagonal movement is
+            not allowed.)  Other keys are as follows:
+
+                 H    Help, brings up a help screen with keystroke
+                      commands, suggestions, etc.
+
+                 X    eXit, ends the game.  No Save, No Query, It's
+                      over.  Useful if the boss comes around the corner,
+                      if you have saved recently.
+
+                 S    Save, saves the game to MINERVGA.SAV and ends the
+                      game.
+
+                 R    Restore, restores a previously saved game from
+                      MINERVGA.SAV
+
+                 Q    Quiet!, silences the program.  Note: if you win
+                      the game, you will still hear the song at the end,
+                      even if silenced.
+
+                 E    Enter, used to enter buildings.  Works only in
+                      town.  You must move to the space in front of the
+                      door you want to enter.
+
+                 T    Top, when used in the elevator, takes you to the
+                      top of the shaft.  Otherwise, has no effect.
+
+                 B    Bottom, when used in the elevator, takes you to
+                      the maximum depth available to you.  Otherwise,
+                      has no effect.
+
+                 D    Drill, allows you to remove granite from the mine
+                      by drilling it out.  You must have a drill to do
+                      this.
+
+                 P    Pump, allows you to remove water from the mine by
+                      pumping it out.  A bucket is required.  A pump
+                      will decrease the cost of this.
+
+                 Y    dYnamite, will initiate a dynamite blast sequence.
+                      you need dynamite and a torch.
+
+
+
+
+             ********** The Mine, the Town, and the Elevator **********
+
+            The game is in 2 dimensions, limiting you to up and down and
+            left and right.  You move through the town, the mine, and
+            the elevator in the same fashion.
+
+            You have secured the mineral rights for an oddly shaped
+            section of earth.  The dimensions of the mine are
+            approximately 240' wide by 960' deep.
+
+            The town lies over the top of the mine, separated by an
+            impassable ground water barrier that keeps the buildings
+            from falling into your mine.  The barrier is impervious to
+            all but the most powerful of tools.
+
+            The Elevator shaft is on the far right of your mine and
+            actually is the rightmost limit to your mining area.  The
+            elevator is your only means of transportation between the
+            mine and the town.  It remains in the shaft and will only
+            move when you are in it.  You cannot enter the shaft at any
+            point except where the elevator is.
+
+            At the start of the game the elevator has a maximum depth
+            that is less than the maximum depth of the mine.  You can
+            spend money to increase your elevator's maximum depth in
+            increments of 60' until you have reached the bottom.  Extra
+            depth is purchased in the general store.
+
+
+
+                    ********** Health and the Hospital **********
+
+            During the course of your underground adventures, you will
+            find there are hazards to your health - cave ins,
+            underground springs, etc.
+
+            Health is represented in the game as a percentage of total
+            health.  Although it is possible to go above %100, this is
+            rare.  Generally, your health will range from zero to one
+            hundred.  When your health goes below %20, it will turn red
+            in an effort to attract your attention to your failing
+            condition.
+
+            If your health falls below zero you are dead and the game is
+            over.  Health can be recovered through surgery and bed rest
+            at the hospital.  For a price, of course.
+
+
+
+
+                      ********** Money and the Bank **********
+
+            You have available to you at the start of the game a bank
+            account of $1500.  It is necessary to outfit yourself with
+            proper mining equipment, etc..  You must remember that
+            mining is not cheap and you will incur costs every time you
+            venture into the mine to explore the depths.  If you run out
+            of money, the bank will spot you a very little bit, but
+            whenever your account is below 0, you run the risk of
+            immediately losing the game.
+
+            The bank is also the assay office, and you can exchange any
+            minerals you have found for a credit to your account.
+
+
+
+                    ********** Equipment and the Store **********
+
+            Equipment is not necessary to play the game.  It is probably
+            necessary if you want to win, however.  Pieces of equipment
+            fall into three categories: items that help you mine by
+            giving you abilities, items that are necessary in order to
+            do special mining tasks, and all others which generally have
+            some special use.
+
+            Digging implements like a shovel or pick will decrease the
+            basic cost of mining.  Their benefit is cumulative, having
+            two is better than one.
+
+            Light sources increase your chance to locate minerals and
+            hazards before you walk right into them.  Lanterns and
+            torches are good for this.  Periodically, a light source
+            object might get used up and need to be replaced.  Lanterns
+            last longer then torches.  The clover will improve your
+            luck.
+
+            The drill is necessary to drill granite.  The bucket is
+            necessary to pump water (the pump reduces the cost of this,
+            but is not necessary.)
+
+            Both the dynamite and the torch are necessary to make an
+            explosion.  Special Note: Make sure you have a path directly
+            to your right to run away to or you will be caught in the
+            blast and suffer grievously.
+
+            Equipment can be purchased at the store.  You cannot have
+            more than one of a given item at a time.  There are several
+            items that cannot be bought.  They must be found, stolen, or
+            built.  There are a total of 12 items available in the game,
+            each with some unique property.
+
+
+
+                       ********** Miss Mimi's Place **********
+
+            The saloon/brothel can supply you with beer, food, condoms,
+            and women.  More importantly, it is where you can evaluate
+            your progress in the game.
+
+            The saloon is closed for the first part of the game, and
+            Mimi is unavailable until you have a certain amount of
+            money.  Visiting Mimi with the proper amount of money and
+            the ring wins the game.
+
+            Food and drink are not required to play the game.  Like the
+            outhouse, they simply add color.  The "night to remember"
+            option is useful because the working girls often have hints
+            and suggestions.
