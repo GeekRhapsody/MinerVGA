@@ -110,6 +110,7 @@ LocateI 22, 20: PRINT "press D to buy this for $300"
 LocateI 24, 20: PRINT "press E to buy this for $200"
 LocateI 26, 20: PRINT "press F to buy this for $100"
 LocateI 28, 20: PRINT "press G to buy this for $300"
+PadMenu "X1221 V1403 A1618 B1818 C2018 D2218 E2418 F2618 G2818" ' port: gamepad marker
 K$ = "*"
 DO WHILE K$ <> "X"
     GOSUB L_0e60
@@ -162,6 +163,7 @@ DO WHILE K$ <> "X"
             MS$ = "Not a toy.;Dynamite! ;": MSCOL = 4: GOSUB L_1496
     END SELECT
 LOOP
+PadMenu ""
 RETURN
 
 L_6e11: ' (6e11-7536) The Community Bank: assay office
@@ -190,6 +192,7 @@ LocateI 20, 15: PRINT "press P to cash in all of your Platinum"
 LocateI 22, 15: PRINT "press G to cash in all of your Gold"
 LocateI 24, 15: PRINT "press S to cash in all of your Silver"
 LocateI 26, 15: PRINT "press D to cash in all of your Gemstones"
+PadMenu "X1221 A1813 P2013 G2213 S2413 D2613" ' port: gamepad marker
 K$ = "*"
 DO WHILE K$ <> "X"
     GOSUB L_0e60
@@ -234,6 +237,7 @@ DO WHILE K$ <> "X"
             END IF
     END SELECT
 LOOP
+PadMenu ""
 RETURN
 
 L_7537: ' (7537-79c0) St. Woody Memorial Hospital
@@ -250,6 +254,7 @@ LocateI 16, 15: PRINT "Our fees are quite reasonable, $100 per day."
 LocateI 18, 15: PRINT "press A to stay until mostly healed."
 LocateI 20, 15: PRINT "press D to stay one day and night."
 LocateI 22, 15: PRINT "press S for Surgical procedures ($300)."
+PadMenu "X1220 A1813 D2013 S2213" ' port: gamepad marker
 K$ = "*"
 DO WHILE K$ <> "X"
     GOSUB L_0e60
@@ -290,6 +295,7 @@ DO WHILE K$ <> "X"
             END IF
     END SELECT
 LOOP
+PadMenu ""
 RETURN
 
 L_79c1: ' (79c1-7fdc) Sweet Miss Mimi's Place (saloon); entered only with BANK >= 5000
@@ -313,6 +319,7 @@ LocateI 20, 15: PRINT "press B to have a brew at the bar."
 LocateI 22, 15: PRINT "press S for a night to remember."
 LocateI 24, 15: PRINT "press M for a square meal."
 LocateI 26, 15: PRINT "press C to purchase a condom."
+PadMenu "X1213 A1813 B2013 S2213 M2413 C2613" ' port: gamepad marker
 K$ = "*"
 DO WHILE K$ <> "X"
     GOSUB L_0e60
@@ -383,6 +390,7 @@ DO WHILE K$ <> "X"
     MNA = HEALTH: MNB = 115: GOSUB L_01a3
     HEALTH = MNR
 LOOP
+PadMenu ""
 RETURN
 
 L_8310: ' (8310-842f) rumour: K$ = "B" -> one of rumours 11-37, K$ = "S" -> one of 1-10

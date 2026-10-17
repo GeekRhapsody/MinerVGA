@@ -7,13 +7,14 @@
 '   mine.bi       sound effects, digging, hazards, elevator keys, dynamite, drill/pump
 '   buildings.bi  help, doors, store, bank, hospital, saloon, rumours
 '   screens.bi    title, game end, tombstone, high scores, win, save/restore
-'   platform.bi   display layout (wide 960x540 or /classic 640x480), sprites, RND, input
+'   platform.bi   display layout (wide 960x540 or /classic 640x480), sprites, RND, keyboard/gamepad input
 
 $RESIZE:STRETCH
 '$INCLUDE:'platform_decl.bi'
 '$INCLUDE:'globals.bi'
 
 InitDataDir
+InputInit
 GfxInit INSTR(UCASE$(COMMAND$), "/CLASSIC") = 0
 
 ' ---- 1000:0030-0164  start-up --------------------------------------------------

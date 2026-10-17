@@ -11,6 +11,15 @@ Run
 
 Press H in the game for the key list. Alt+Enter toggles fullscreen.
 
+Gamepad (Xbox-layout / XInput controllers)
+------------------------------------------
+  D-pad or left stick  move            A        enter a building
+  X / Y                drill / pump    RT       dynamite
+  LB / RB              elevator top / bottom
+  Back                 help            Start    pause menu (sound, save,
+                                                restore, quit)
+  In buildings: up/down choose, A selects, B leaves.
+
 Keep MinerVGA.exe, MINERVGA.LBR (sprites), MINERVGA.SAV (saved game) and
 MINERVGA.SCR (high scores) in the same folder. MINERVGA.DOC is the original
 manual. Save files use the original format.

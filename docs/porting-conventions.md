@@ -70,6 +70,7 @@ Original coordinates stay as they are. `port/platform.bi` maps them to the activ
 | Full-screen scenes (title, tombstone, game over, high scores, win): first `CLS` | `SceneBegin` (clears the screen and opens a centred 640×480 view) |
 | Full-screen scenes: `LOCATE r, c` | `LocateS r, c` |
 | Unpositioned `PRINT` that relies on the cursor wrapping to column 1 | make the position explicit with `LocateI`/`LocateS` on each line |
+| Building menu loop (`K$ = "*"` / `DO WHILE K$ <> "X"`) | add `PadMenu "Krrcc ..."` before it and `PadMenu ""` after `LOOP` (port-only: gamepad marker; one group per option = key, text row, marker column in interior coordinates) |
 
 LINE, PSET, PAINT, CIRCLE and PUT honour the active view, so their coordinates are copied unchanged. Text is not affected by the view, hence `LocateI` / `LocateS`. `DRAW` ignores the view and is only used by the miner figure (`L_1384`).
 

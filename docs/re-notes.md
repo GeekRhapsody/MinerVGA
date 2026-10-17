@@ -168,6 +168,14 @@ Marked `' QUIRK:` in the source. The port keeps them deliberately.
 - Win screen: each PLAY phrase waits until less than 3 s of music is queued (QB 4.0's 32-note
   background buffer blocked the same way) and each firework step calls `Idle`.
 - `LINE INPUT` for the high-score name goes through `LineIn$` so test scripts can type it.
+  `LineIn$` no longer calls `LINE INPUT` at all: its own loop echoes keys, shows a `_` cursor,
+  stops at the right edge and takes gamepad input.
+- Gamepad (XInput, `xinput1_4.dll`) in `platform.bi`: presses become the keys the game reads,
+  chosen by `VIEWKIND%` (map: actions; building: menu marker; help and scenes: `" "`, which
+  no command reacts to). Start on the map opens a pause menu drawn over a copy of the screen,
+  which is put back unchanged; it holds the commands that end or reload the game (`S`, `R`,
+  `X`) plus `H` and `Q`. Buildings call `PadMenu` around their key loops. No marker or overlay
+  is drawn without a pad, so keyboard play is pixel-identical to before.
 
 ## Verification against the original
 
