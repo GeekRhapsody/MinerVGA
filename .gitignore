@@ -1,4 +1,12 @@
-re/out/
+# Build output
 dist/
+out/
 *.exe
 !MINERVGA.EXE
+
+# Reverse-engineering output (regenerate with re/decompile.ps1)
+re/out/
+re/captures/
+
+__pycache__/
+Thumbs.db

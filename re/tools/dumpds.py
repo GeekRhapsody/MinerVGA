@@ -59,11 +59,12 @@ while a < DATA_START - 4:
         print(f'DS:{a:04x} word {w:#06x}')
     a += 2
 
-# DATA records: {u16 link, text, NUL}, terminated by 0xFFFF.
+# DATA records: {u16 code address of the DATA line (RESTORE target), text, NUL}, end 0xFFFF.
 a = DATA_START
 n = 0
 while a < len(D) - 2 and D[a:a + 2] != b'\xff\xff':
     end = D.index(b'\0', a + 2)
-    print(f'DS:{a:04x} data {n:3d} {text(D[a + 2:end]).strip()}')
+    (link,) = struct.unpack_from('<H', D, a)
+    print(f'DS:{a:04x} data {n:3d} @{link:04x} {text(D[a + 2:end]).strip()}')
     n += 1
     a = end + 1

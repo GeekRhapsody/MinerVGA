@@ -1,0 +1,91 @@
+name: Build and release
+
+on:
+  push:
+    branches: [main, master]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+env:
+  QB64PE_VERSION: 4.6.0
+  QB64PE_SHA256: 2c18a41a1435248b14b2080404811e9c6f7c0ac6d9e41976f720544480729e61
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Cache QB64-PE
+        id: qb64cache
+        uses: actions/cache@v6
+        with:
+          path: qb64pe-dl
+          key: qb64pe-win-x64-${{ env.QB64PE_VERSION }}
+
+      - name: Download QB64-PE
+        if: steps.qb64cache.outputs.cache-hit != 'true'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force qb64pe-dl | Out-Null
+          $url = "https://github.com/QB64-Phoenix-Edition/QB64pe/releases/download/v$env:QB64PE_VERSION/qb64pe_win-x64-$env:QB64PE_VERSION.7z"
+          Invoke-WebRequest $url -OutFile qb64pe-dl/qb64pe.7z
+
+      - name: Verify and extract QB64-PE
+        shell: pwsh
+        run: |
+          $hash = (Get-FileHash qb64pe-dl/qb64pe.7z -Algorithm SHA256).Hash.ToLower()
+          if ($hash -ne $env:QB64PE_SHA256) { throw "QB64-PE archive hash mismatch: $hash" }
+          7z x qb64pe-dl/qb64pe.7z -oqb64pe -y | Out-Null
+          $exe = Get-ChildItem qb64pe -Recurse -Filter qb64pe.exe | Select-Object -First 1
+          if (-not $exe) { throw 'qb64pe.exe not found after extraction' }
+          "QB64PE=$($exe.FullName)" | Out-File -Append -Encoding utf8 $env:GITHUB_ENV
+
+      - name: Build
+        shell: pwsh
+        run: ./build.ps1
+
+      - name: Work out version
+        id: ver
+        shell: pwsh
+        run: |
+          if ($env:GITHUB_REF -like 'refs/tags/v*') { $v = $env:GITHUB_REF_NAME }
+          else { $v = 'dev-' + $env:GITHUB_SHA.Substring(0, 7) }
+          "version=$v" | Out-File -Append -Encoding utf8 $env:GITHUB_OUTPUT
+
+      - name: Package
+        shell: pwsh
+        run: ./tools/package.ps1 -Version '${{ steps.ver.outputs.version }}'
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: MinerVGA-${{ steps.ver.outputs.version }}-win64
+          path: |
+            out/*.zip
+            out/*.sha256
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          path: assets
+          merge-multiple: true
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$TAG" assets/* \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "MinerVGA $TAG" \
+            --generate-notes \
+            --notes "Native Windows (x64) build of MinerVGA 1.1. Unzip and run MinerVGA.exe, or MinerVGA.exe /classic for the original 640x480 layout."

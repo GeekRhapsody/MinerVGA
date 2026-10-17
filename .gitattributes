@@ -5,3 +5,7 @@
 *.EXE binary
 *.bas text eol=crlf
 *.bi text eol=crlf
+*.yml text eol=lf
+*.md text
+*.ps1 text
+*.png binary
